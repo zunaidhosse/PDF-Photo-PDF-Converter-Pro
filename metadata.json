@@ -1,0 +1,6 @@
+{
+  "name": "PDF Photo Converter Pro",
+  "description": "Convert photos to PDF, PDF to photos, and add customizable overlay logos with real-time editing and transparency control.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

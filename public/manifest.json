@@ -1,0 +1,18 @@
+{
+  "name": "PDF & Photo Converter Pro",
+  "short_name": "PDF Converter",
+  "description": "Convert photos to PDF, PDF to photos, and add overlay stamps/logos with perfect quality and offline support.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
