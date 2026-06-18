@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { Image as ImageIcon, FileImage, Layers, Sparkles, ChevronRight } from 'lucide-react';
 import { ActiveTab } from '../types';
+import { useTranslation } from '../lib/i18n';
 
 interface DashboardProps {
   onSelectTab: (tab: ActiveTab) => void;
@@ -9,53 +10,55 @@ interface DashboardProps {
 }
 
 export default function Dashboard({ onSelectTab, isBrandingEnabled }: DashboardProps) {
+  const { t } = useTranslation();
+
   const cards = [
     {
       id: 'photo-to-pdf' as ActiveTab,
-      title: 'Photo to PDF',
-      description: 'Select one or multiple photos and instantly convert them into a high-quality PDF document for sharing.',
+      title: t.photoToPdfTitle,
+      description: t.photoToPdfDesc,
       icon: ImageIcon,
       gradient: 'from-blue-400 to-blue-600',
       shadow: 'shadow-blue-500/30',
-      badge: 'Fast',
+      badge: t.fastBadge,
     },
     {
       id: 'pdf-to-photo' as ActiveTab,
-      title: 'PDF to Photo',
-      description: 'Convert PDF pages into high-resolution images. Extract visual content with precision and save in top quality.',
+      title: t.pdfToPhotoTitle,
+      description: t.pdfToPhotoDesc,
       icon: FileImage,
       gradient: 'from-purple-500 to-indigo-600',
       shadow: 'shadow-indigo-500/30',
-      badge: 'HQ Render',
+      badge: t.hqRenderBadge,
     },
     ...(isBrandingEnabled ? [
       {
         id: 'add-logo' as ActiveTab,
-        title: 'PDF LOGO PDF',
-        description: 'পিডিএফ ফাইল আপলোড করে তার ওপর লোগো/ফটো যোগ করে সরাসরি ব্র্যান্ডেড পিডিএফ হিসেবে ডাউনলোড করুন।',
+        title: t.pdfLogoPdfTitle,
+        description: t.pdfLogoPdfDesc,
         icon: Layers,
         gradient: 'from-emerald-400 to-teal-600',
         shadow: 'shadow-emerald-500/30',
-        badge: 'New Mode',
+        badge: t.newModeBadge,
       },
       {
         id: 'add-logo' as ActiveTab,
-        title: 'Add Logo (Only Image)',
-        description: 'Personalize your image files. Drag, resize, and rotate any logo onto your documents with transparency controls.',
+        title: t.addLogoTitle,
+        description: t.addLogoDesc,
         icon: Layers,
         gradient: 'from-orange-400 to-pink-500',
         shadow: 'shadow-orange-500/30',
-        badge: 'Editor',
+        badge: t.editorBadge,
       }
     ] : [
       {
         id: 'add-logo' as ActiveTab,
-        title: 'Add Logo',
-        description: 'Personalize your files. Drag, resize, and rotate any logo onto your documents with transparency controls.',
+        title: t.addLogoTitle,
+        description: t.addLogoDesc,
         icon: Layers,
         gradient: 'from-orange-400 to-pink-500',
         shadow: 'shadow-orange-500/30',
-        badge: 'Editor',
+        badge: t.editorBadge,
       }
     ])
   ];
@@ -75,27 +78,27 @@ export default function Dashboard({ onSelectTab, isBrandingEnabled }: DashboardP
             
             <div>
               <h1 className="font-display font-extrabold text-base text-slate-100 tracking-tight leading-tight">
-                PDF Photo
+                {t.appName}
               </h1>
               <p className="font-sans font-bold text-[10px] text-indigo-400 tracking-wider">
-                CONVERTER PRO
+                {t.appSubtitle}
               </p>
             </div>
           </div>
 
           <div className="flex items-center gap-2 bg-white/5 px-3 py-1.5 rounded-full border border-white/10">
             <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-            <span className="text-[10px] font-semibold text-slate-300 uppercase tracking-wider">Premium member</span>
+            <span className="text-[10px] font-semibold text-slate-300 uppercase tracking-wider">{t.premiumMember}</span>
           </div>
         </div>
 
         {/* Welcome Section */}
         <div className="mb-8">
           <h2 className="font-display text-4xl font-extrabold leading-tight tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-100 to-slate-400">
-            Welcome, User
+            {t.welcomeUser}
           </h2>
           <p className="font-sans text-[13px] text-slate-400 mt-2 leading-relaxed">
-            What would you like to create today?
+            {t.welcomeSubtitle}
           </p>
         </div>
 

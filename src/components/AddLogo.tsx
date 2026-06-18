@@ -8,6 +8,7 @@ import {
 import * as pdfjsLib from 'pdfjs-dist';
 import { jsPDF } from 'jspdf';
 import { ActiveTab, LogoConfig } from '../types';
+import { useTranslation } from '../lib/i18n';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.mjs`;
 
@@ -17,6 +18,7 @@ interface AddLogoProps {
 }
 
 export default function AddLogo({ onBack, isBrandingEnabled }: AddLogoProps) {
+  const { t } = useTranslation();
   // Step indicators: 1: Select Base. 2: Select Logo. 3: Workspace
   const [editorStep, setEditorStep] = useState<1 | 2 | 3>(1);
 
@@ -430,13 +432,15 @@ export default function AddLogo({ onBack, isBrandingEnabled }: AddLogoProps) {
         <div className="flex items-center gap-3">
           <button 
             onClick={onBack}
-            className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 hover:text-white"
+            className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 hover:text-white cursor-pointer"
             id="back_btn_add_logo"
           >
             <ArrowLeft className="w-5 h-5" />
           </button>
           <div>
-            <h2 className="font-display font-bold text-lg leading-tight">Add Logo</h2>
+            <h2 className="font-display font-bold text-lg leading-tight">
+              {isBrandingEnabled ? t.pdfLogoPdfTitle : t.addLogoTitle}
+            </h2>
             <p className="font-sans text-[11px] text-slate-400">Place overlays on your PDFs or Photos</p>
           </div>
         </div>

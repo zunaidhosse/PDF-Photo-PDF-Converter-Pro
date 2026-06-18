@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import { jsPDF } from 'jspdf';
 import { ActiveTab, SelectedPhoto, LogoConfig } from '../types';
+import { useTranslation } from '../lib/i18n';
 
 interface PhotoToPdfProps {
   onBack: () => void;
@@ -14,6 +15,7 @@ interface PhotoToPdfProps {
 }
 
 export default function PhotoToPdf({ onBack, isBrandingEnabled }: PhotoToPdfProps) {
+  const { t } = useTranslation();
   const [photos, setPhotos] = useState<SelectedPhoto[]>([]);
   const [isProcessing, setIsProcessing] = useState(false);
   const [processingProgress, setProcessingProgress] = useState(0);
@@ -326,13 +328,13 @@ export default function PhotoToPdf({ onBack, isBrandingEnabled }: PhotoToPdfProp
       <div className="flex items-center gap-3 mb-6">
         <button 
           onClick={onBack}
-          className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 hover:text-white"
+          className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 hover:text-white cursor-pointer"
           id="back_btn_photo_to_pdf"
         >
           <ArrowLeft className="w-5 h-5" />
         </button>
         <div>
-          <h2 className="font-display font-bold text-lg leading-tight">Photo to PDF</h2>
+          <h2 className="font-display font-bold text-lg leading-tight">{t.photoToPdfTitle}</h2>
           <p className="font-sans text-[11px] text-slate-400">Convert pictures to document papers</p>
         </div>
       </div>

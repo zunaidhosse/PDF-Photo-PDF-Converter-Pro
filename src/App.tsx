@@ -6,57 +6,56 @@ import PhotoToPdf from './components/PhotoToPdf';
 import PdfToPhoto from './components/PdfToPhoto';
 import AddLogo from './components/AddLogo';
 import PWAInstallPrompt from './components/PWAInstallPrompt';
+import InfoMenu from './components/InfoMenu';
+import { useTranslation } from './lib/i18n';
 import { ActiveTab } from './types';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<ActiveTab>('dashboard');
   const [isBrandingEnabled, setIsBrandingEnabled] = useState(false);
+  const { t } = useTranslation();
 
   return (
     <PhoneFrame>
-      {/* Premium Top Tick Mark Toggle Bar */}
-      <div className="bg-[#101830]/95 backdrop-blur-md px-5 py-3 border-b border-white/10 flex items-center justify-between shadow-lg relative z-30">
-        <label className="flex items-center gap-3 cursor-pointer group select-none">
-          <input 
-            type="checkbox" 
-            checked={isBrandingEnabled} 
-            onChange={(e) => setIsBrandingEnabled(e.target.checked)}
-            className="sr-only"
-          />
-          {/* Custom Checkbox */}
-          <div className={`w-5.5 h-5.5 rounded-lg border-2 flex items-center justify-center transition-all ${
-            isBrandingEnabled 
-              ? 'bg-emerald-500 border-emerald-400 shadow-[0_0_12px_rgba(16,185,129,0.4)]' 
-              : 'border-slate-500 bg-slate-900/60'
-          } shrink-0`}>
-            {isBrandingEnabled && (
-              <svg 
-                viewBox="0 0 24 24" 
-                className="w-3.5 h-3.5 text-slate-950 stroke-[4.5] fill-none stroke-current"
-              >
-                <path d="M20 6L9 17L4 12" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            )}
-          </div>
-          <div className="flex flex-col">
-            <span className={`font-display font-black text-[11px] tracking-wide leading-tight uppercase transition-colors ${
-              isBrandingEnabled ? 'text-emerald-400' : 'text-slate-300 group-hover:text-white'
+      {/* Premium Top Tick Mark Toggle Bar with integrated Info Menu option */}
+      <div className="bg-[#0b0f19]/90 backdrop-blur-xl px-4 pt-4 pb-2.5 border-b border-white/[0.08] flex items-center justify-between shadow-[0_4px_20px_rgba(0,0,0,0.3)] relative z-30">
+        <div className="flex items-center gap-3 min-w-0 flex-1">
+          <InfoMenu />
+          <label className="flex items-center gap-2 cursor-pointer group select-none min-w-0 flex-1 mt-0.5">
+            <input 
+              type="checkbox" 
+              checked={isBrandingEnabled} 
+              onChange={(e) => setIsBrandingEnabled(e.target.checked)}
+              className="sr-only"
+            />
+            {/* Custom Premium Mini Switch */}
+            <div className={`w-7.5 h-4.25 rounded-full relative transition-colors duration-300 shrink-0 ${
+              isBrandingEnabled 
+                ? 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.35)]' 
+                : 'bg-slate-800 border border-white/10'
             }`}>
-              এডভান্সড লগো মোড • Custom Brand
-            </span>
-            <span className={`font-sans text-[10px] leading-tight transition-colors ${
-              isBrandingEnabled ? 'text-emerald-500/90 font-medium' : 'text-slate-500'
-            }`}>
-              পিডিএফ ও ইমেজে নিজস্ব লোগো সংযুক্ত করতে টিক দিন
-            </span>
-          </div>
-        </label>
-        <div className={`text-[9px] font-black tracking-widest px-2.5 py-0.5 rounded-full uppercase border ${
+              <div className={`absolute top-0.5 w-3.25 h-3.25 rounded-full bg-white transition-all duration-300 ${
+                isBrandingEnabled ? 'left-3.75' : 'left-0.5'
+              }`} />
+            </div>
+            <div className="flex flex-col min-w-0 pr-1 select-none">
+              <span className={`font-display font-medium text-[9.5px] tracking-wide leading-tight uppercase transition-colors truncate ${
+                isBrandingEnabled ? 'text-emerald-400 font-extrabold' : 'text-slate-300'
+              }`}>
+                {t.advancedLogoMode}
+              </span>
+              <span className="font-sans text-[8px] leading-tight text-slate-500 truncate mt-0.5">
+                {t.advancedLogoDesc}
+              </span>
+            </div>
+          </label>
+        </div>
+        <div className={`text-[8px] font-black tracking-widest px-2 py-0.5 rounded-full uppercase border shrink-0 transition-all ${
           isBrandingEnabled 
-            ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400' 
+            ? 'bg-emerald-500/10 border-emerald-500/25 text-emerald-400 animate-pulse' 
             : 'bg-white/5 border-white/10 text-slate-500'
         }`}>
-          {isBrandingEnabled ? 'ACTIVE' : 'OFF'}
+          {isBrandingEnabled ? t.activeBadge : t.offBadge}
         </div>
       </div>
 

@@ -6,6 +6,7 @@ import {
   Move, Maximize2, RotateCw, Sliders
 } from 'lucide-react';
 import { ActiveTab, ConvertedImage, LogoConfig } from '../types';
+import { useTranslation } from '../lib/i18n';
 
 import * as pdfjsLib from 'pdfjs-dist';
 
@@ -18,6 +19,7 @@ interface PdfToPhotoProps {
 }
 
 export default function PdfToPhoto({ onBack, isBrandingEnabled }: PdfToPhotoProps) {
+  const { t } = useTranslation();
   const [file, setFile] = useState<File | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const [processingStatus, setProcessingStatus] = useState('');
@@ -273,13 +275,13 @@ export default function PdfToPhoto({ onBack, isBrandingEnabled }: PdfToPhotoProp
       <div className="flex items-center gap-3 mb-6">
         <button 
           onClick={onBack}
-          className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 hover:text-white"
+          className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 hover:text-white cursor-pointer"
           id="back_btn_pdf_to_photo"
         >
           <ArrowLeft className="w-5 h-5" />
         </button>
         <div>
-          <h2 className="font-display font-bold text-lg leading-tight">PDF to Photo</h2>
+          <h2 className="font-display font-bold text-lg leading-tight">{t.pdfToPhotoTitle}</h2>
           <p className="font-sans text-[11px] text-slate-400">Extract high-fidelity pages into images</p>
         </div>
       </div>
