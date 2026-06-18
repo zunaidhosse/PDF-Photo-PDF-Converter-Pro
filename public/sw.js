@@ -5,7 +5,9 @@ const ASSETS = [
   '/manifest.json',
   '/icon.svg',
   '/icon-192.png',
-  '/icon-512.png'
+  '/icon-512.png',
+  '/apple-touch-icon.png',
+  '/favicon.png'
 ];
 
 // Install Event
